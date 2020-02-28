@@ -17,6 +17,8 @@ public class HomeController {
     CategoryRepository categoryRepository;
     @Autowired
     CarRepository carRepository;
+    @Autowired
+    CloudinaryConfig cloudc;
 
     @RequestMapping("/")
     public String index(Model model){
@@ -87,6 +89,7 @@ public class HomeController {
     public String category(@PathVariable("id") long id, Model model) {
         model.addAttribute("category", categoryRepository.findById(id).get());
         model.addAttribute("cars", carRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "category";
     }
 

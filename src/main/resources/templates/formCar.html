@@ -19,38 +19,51 @@
 
 <div class="container">
 
-    <h1>Add Car</h1>
-    <form action="#" th:action="@{/processCar}" th:object="${car}" method="post">
-        <input type="hidden" th:field="*{id}" />
+    <h1 class="display-4" style="text-align: center"><strong>ADD CAR</strong></h1>
+    <hr class="mt-2 mb-5">
 
-        <div class="form-group">
-            Name :<input class="form-control" type="text" th:field="*{name}" />
-            <span th:if="${#fields.hasErrors('name')}"
-                  th:errors="*{name}"></span>
+    <div class="row">
+        <div class="col-4" ></div>
+        <div class="col-4" >
+
+            <form th:action="@{/processCar}" th:object="${car}" method="post">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Make and Model" required>
+                    <span th:if="${#fields.hasErrors('name')}"
+                          th:errors="*{name}"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" th:field="*{year}" class="form-control" placeholder="Enter Year" required>
+                    <span th:if="${#fields.hasErrors('year')}"
+                          th:errors="*{year}"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" th:field="*{price}" class="form-control" placeholder="Enter Price" required>
+                    <span th:if="${#fields.hasErrors('price')}"
+                          th:errors="*{price}"></span>
+                </div>
+
+                <!--    selection bar of company names-->
+                <select class="custom-select" name="category">
+                    <option selected>Select Category</option>
+                    <div th:each="category : ${categories}">
+                        <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                    </div>
+                </select>
+                <br>
+                <br>
+                <button type="submit" value="Submit" class="btn btn-lg btn-outline-light" style="margin: auto"><strong>Submit</strong></button>
+                <br>
+            </form>
+
         </div>
+        <div class="col-4" ></div>
+    </div>
 
-        <div class="form-group">
-            Year :<input class="form-control" type="text" th:field="*{year}" />
-            <span th:if="${#fields.hasErrors('year')}"
-                  th:errors="*{year}"></span>
-        </div>
-
-        <div class="form-group">
-            Price :<input class="form-control" type="text" th:field="*{price}" />
-            <span th:if="${#fields.hasErrors('price')}"
-                  th:errors="*{price}"></span>
-        </div>
-
-        <!--    selection bar of company names-->
-        <select name="category">
-            <div th:each="category : ${categories}">
-                <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
-            </div>
-        </select>
-
-        <button type="submit" value="Submit" class="btn btn-outline-primary" style="margin: auto">Submit</button>
-
-    </form>
 
 </div>
 

@@ -10,7 +10,7 @@ public class Car {
     private String name;
     private String year;
     private String price;
-//    private boolean used;
+    private String image;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -52,6 +52,15 @@ public class Car {
         this.price = price;
     }
 
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -59,4 +68,6 @@ public class Car {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
 }

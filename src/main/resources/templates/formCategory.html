@@ -19,6 +19,37 @@
 
 <div class="container">
 
+    <h1 class="display-4" style="text-align: center"><strong>ADD CATEGORY</strong></h1>
+    <hr class="mt-2 mb-5">
+
+    <div class="row">
+        <div class="col-4" ></div>
+        <div class="col-4" >
+
+            <form th:action="@{/processCategory}" th:object="${category}" method="post">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Category" required>
+                    <span th:if="${#fields.hasErrors('name')}"
+                          th:errors="*{name}"></span>
+                </div>
+                <button type="submit" value="Submit" class="btn btn-lg btn-outline-light" style="margin: auto"><strong>Submit</strong></button>
+                <br>
+            </form>
+
+        </div>
+        <div class="col-4" ></div>
+    </div>
+
+</div>
+
+
+
+
+<!-- ORIGINAL LAYOUT
+
+<div class="container">
     <h1>Add Category</h1>
     <form action="#" th:action="@{/processCategory}" th:object="${category}" method="post">
         <input type="hidden" th:field="*{id}" />
@@ -32,9 +63,10 @@
         <button type="submit" value="Submit" class="btn btn-outline-primary" style="margin: auto">Submit</button>
 
     </form>
-
-
 </div>
+
+-->
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

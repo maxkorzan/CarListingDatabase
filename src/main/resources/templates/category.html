@@ -17,17 +17,53 @@
 <br>
 <br>
 
-<div class="container">
 
-    <h1>CATEGORY LISTING</h1><br>
+
+<div class="container">
+    <!--Header-->
+    <h1 class="mt-4 mb-3">Showroom <small style="color: white" th:inline="text">[[${category.name}]]s</small></h1>
+</div>
+
+<div class="container bg-faded text-white">
+    <!--Category Navbar-->
+    <br>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">
+            <a href="/"><button type="button" class="btn btn-outline-dark"> All </button></a>&emsp;
+        </li>
+        <div th:each="category : ${categories}">
+            <li class="breadcrumb-item">
+                <a th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-outline-dark" th:text="${category.name}"></button></a>&emsp;
+            </li>
+        </div>
+    </ol>
+
+    <!-- Project One -->
     <div th:each="car : ${category.cars}">
-        <div th:text="${car.name}"></div>
-        <div th:text="${car.year}"></div>
-        <div th:text="${car.price}"></div>
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h1 th:inline="text">[[${car.name}]]</h1>
+                <p th:inline="text">Year: [[${car.year}]]</p>
+                <p th:inline="text">Type: [[${car.category.name}]]</p>
+                <p th:inline="text">MSRP: [[${car.price}]]</p>
+
+                <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Update</button></a>
+                <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Details</button></a>
+                <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-danger" style="opacity: 80%">Delete</button></a>
+            </div>
+
+        </div>
+
+        <br>
+        <hr>
         <br>
 
     </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

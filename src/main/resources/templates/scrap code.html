@@ -42,3 +42,150 @@
         </tbody>
     </table>
 </div>
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+<div class="card bg-dark text-white" style="width: 18rem;">
+    <!--                    <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
+    <div class="card-body">
+        <h5 class="card-title" th:inline="text">[[${car.year}]] [[${car.name}]]</h5>
+        <p class="card-text" th:inline="text">[[${car.category.name}]]</p>
+        <p class="card-text" th:inline="text">[[${car.price}]]</p>
+
+        <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-primary">Update</button></a>
+        <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-primary">Details</button></a>
+        <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></a>
+
+    </div>
+</div>
+</div>
+<!--        </div>-->
+</div>
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+ORIGINAL INDEX LAYOUT USING CARDS
+
+<div class="container">
+
+    <h1>Vehicles For Sale</h1><br>
+
+    <div class="row">
+        <div class="col" style="background: rgba(5,73,180,0.22)">
+            <a th:each="category : ${categories}" th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-lg btn-outline-light" th:text="${category.name}"></button>&emsp;</a>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <!--CARDS-->
+    <div class="row">
+        <div class="card-deck">
+            <div th:each="car : ${cars}" class="col-lg-3 col-md-4 col-6">
+
+                <div class="card bg-clear text-white">
+                    <img class="card-img-top" src="images/carousel/12-goodwood-festival-photos-for-your-desktop-wallpaper-1476934552658.jpg" style="max-width: 100%; height: auto" alt="Card image cap">
+                    <div class="card-body bg-faded">
+                        <h5 class="card-title" th:inline="text">[[${car.year}]] [[${car.name}]]</h5>
+                        <p class="card-text" th:inline="text">[[${car.category.name}]]</p>
+                        <p class="card-text" th:inline="text">[[${car.price}]]</p>
+
+                    </div>
+                    <div class="card-footer bg-faded">
+                        <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Update</button></a>
+                        <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Details</button></a>
+                        <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-danger" style="opacity: 80%">Delete</button></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+ORIGINAL CATEGORY.HTML LAYOUT USING CARDS
+
+
+<!--
+<div class="container">
+
+    <h1 th:inline="text">[[${category.name}]]s For Sale</h1><br>
+
+    <div class="row">
+        <div class="col">
+        <a th:each="category : ${categories}" th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-light" th:text="${category.name}"></button></a>
+        </div>
+    </div>
+
+    &lt;!&ndash;CARDS&ndash;&gt;
+    <div class="row">
+        <div class="card-deck">
+            <div th:each="car : ${category.cars}" >
+
+                <div class="card bg-dark text-white">
+                    <img class="card-img-top" src="images/carousel/12-goodwood-festival-photos-for-your-desktop-wallpaper-1476934552658.jpg" style="max-width: 100%; height: auto" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" th:inline="text">[[${car.year}]] [[${car.name}]]</h5>
+                        <p class="card-text" th:inline="text">[[${car.category.name}]]</p>
+                        <p class="card-text" th:inline="text">[[${car.price}]]</p>
+
+                    </div>
+                    <div class="card-footer">
+                        <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-primary">Update</button></a>
+                        <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-primary">Details</button></a>
+                        <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+-->
+
+
+
+<!--
+
+<h1>CATEGORY LISTING</h1><br>
+<div th:each="car : ${category.cars}">
+    <div th:text="${car.name}"></div>
+    <div th:text="${car.year}"></div>
+    <div th:text="${car.price}"></div>
+    <br>
+
+</div>
+
+-->
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
