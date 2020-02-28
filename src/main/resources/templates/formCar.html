@@ -12,9 +12,14 @@
 
 </head>
 <body>
+
+<div th:replace="base :: navbar"></div>
+<br>
+<br>
+
 <div class="container">
 
-    <h1>Employee Form</h1>
+    <h1>Add Car</h1>
     <form action="#" th:action="@{/processCar}" th:object="${car}" method="post">
         <input type="hidden" th:field="*{id}" />
 

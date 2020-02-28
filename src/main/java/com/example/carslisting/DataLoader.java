@@ -79,7 +79,7 @@ public class DataLoader implements CommandLineRunner {
 
 
         category = new Category();
-        category.setName("Truck");
+        category.setName("Commercial Fleet");
         car = new Car();
         car.setName("Chevrolet Silverado Z71");
         car.setYear("2019");

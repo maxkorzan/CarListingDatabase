@@ -1,0 +1,44 @@
+<!--LIST-->
+<div class="row">
+    <h1>Category List</h1>
+    <div th:each="category : ${categories}">
+        <div th:text="${category.name}"></div>
+        <div th:each="car : ${category.cars}">
+            <ul>
+                <li th:inline="text">Model: [[${car.year}]] [[${car.name}]]</li>
+                <li th:inline="text">MSRP: [[${car.price}]]</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--TABLE-->
+
+<div class="row">
+    <table class="table table-hover table-borderless">
+        <thead>
+        <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <div th:each="category : ${categories}">
+            <tr th:each="car : ${category.cars}">
+                <td th:text="${category.name}"></td>
+                <td th:text="${car.name}"></td>
+                <td th:text="${car.year}"></td>
+                <td th:text="${car.price}"></td>
+                <td>
+                    <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-primary">Update</button></a>
+                    <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-info">Details</button></a>
+                    <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></a>
+                </td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+</div>

@@ -22,6 +22,8 @@ public class HomeController {
     public String index(Model model){
         //pull all categories from repo --> template
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("cars", carRepository.findAll());
+
         return "index";
     }
 
@@ -78,6 +80,14 @@ public class HomeController {
     public String delCar(@PathVariable("id") long id, Model model) {
         carRepository.deleteById(id);
         return "redirect:/";
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @RequestMapping("/category/{id}")
+    public String category(@PathVariable("id") long id, Model model) {
+        model.addAttribute("category", categoryRepository.findById(id).get());
+        model.addAttribute("cars", carRepository.findAll());
+        return "category";
     }
 
 

@@ -19,20 +19,14 @@
 
 <div class="container">
 
-    <h1>Add Category</h1>
-    <form action="#" th:action="@{/processCategory}" th:object="${category}" method="post">
-        <input type="hidden" th:field="*{id}" />
+    <h1>CATEGORY LISTING</h1><br>
+    <div th:each="car : ${category.cars}">
+        <div th:text="${car.name}"></div>
+        <div th:text="${car.year}"></div>
+        <div th:text="${car.price}"></div>
+        <br>
 
-        <div class="form-group">
-            Name :<input class="form-control" type="text" th:field="*{name}" />
-            <span th:if="${#fields.hasErrors('name')}"
-                  th:errors="*{name}"></span>
-        </div>
-
-        <button type="submit" value="Submit" class="btn btn-outline-primary" style="margin: auto">Submit</button>
-
-    </form>
-
+    </div>
 
 </div>
 
