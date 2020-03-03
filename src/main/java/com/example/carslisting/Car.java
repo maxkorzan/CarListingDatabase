@@ -16,7 +16,9 @@ public class Car {
     @JoinColumn(name = "category_id")
     private Category category;
 
-
+    public Car() {
+        this.image="https://res.cloudinary.com/dwsdggfi5/image/upload/v1583268617/defaultCarImage_kijrsj.jpg";
+    }
 
     /////////////////////////////////////////////////////////////
 
@@ -60,6 +62,7 @@ public class Car {
     public void setImage(String image) {
         this.image = image;
     }
+
 
     public Category getCategory() {
         return category;

@@ -5,9 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import com.cloudinary.utils.ObjectUtils;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -54,14 +58,29 @@ public class HomeController {
     }
 
     @PostMapping("/processCar")
-    public String processForm(@Valid Car car, BindingResult result, @RequestParam("category") Long id){
+    public String processForm(@Valid @ModelAttribute Car car, BindingResult result, /*@RequestParam("pic") String pic,*/  @RequestParam("category") long id, @RequestParam("file") MultipartFile file){
         if (result.hasErrors()){
             return "formCar";
+        }
+
+        if (file.isEmpty()){
+//            car.setImage(pic);
+        }
+        else {
+            try {
+                Map uploadResult = cloudc.upload(file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
+                car.setImage(uploadResult.get("url").toString());
+                carRepository.save(car);
+            } catch (IOException e){
+                e.printStackTrace();
+                return "redirect:/addCar";
+            }
         }
         Category category = categoryRepository.findById(id).get();
         car.setCategory(category);
         carRepository.save(car);
         return "redirect:/";
+
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +94,12 @@ public class HomeController {
     @RequestMapping("/update/{id}")
     public String updateCar(@PathVariable("id") long id, Model model) {
         model.addAttribute("car", carRepository.findById(id).get());
+
+        Car car=carRepository.findById(id).get();
+//        String pic=car.getImage();                //THE HARD WAY USING REQUESTPARAM
+//        model.addAttribute("pic",pic);            //THE HARD WAY USING REQUESTPARAM
+        model.addAttribute("car", car);
+
         model.addAttribute("categories", categoryRepository.findAll());
         return "formCar";
     }

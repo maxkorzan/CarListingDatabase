@@ -26,7 +26,7 @@
         <div class="col-4" ></div>
         <div class="col-4" >
 
-            <form th:action="@{/processCar}" th:object="${car}" method="post">
+            <form th:action="@{/processCar}" th:object="${car}" method="post" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{id}">
 
                 <div class="form-group">
@@ -48,12 +48,22 @@
                 </div>
 
                 <!--    selection bar of company names-->
-                <select class="custom-select" name="category">
+                <select class="custom-select" name="category" required>
                     <option selected>Select Category</option>
                     <div th:each="category : ${categories}">
                         <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
                     </div>
                 </select>
+
+                <!--upload image for cloudinary-->
+                <div class="form-group">
+                    <label for="fileupload">Upload photo</label>
+                    <input type="hidden" th:field="*{image}">              <!--THE HARD WAY USING REQUESTPARAM th:value="${pic}" name="pic"-->
+                    <input type="file" name="file" class="form-control-file" id="fileupload">
+
+                </div>
+
+
                 <br>
                 <br>
                 <button type="submit" value="Submit" class="btn btn-lg btn-outline-light" style="margin: auto"><strong>Submit</strong></button>
